@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal — Social Emotional Challenge · Eureka Websites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fraunces:ital,wght@0,300;0,600;1,300&family=Concert+One&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    :root {
+      --bg:       #f7fafd;
+      --surface:  #ffffff;
+      --border:   #dde8f2;
+      --blue:     #5bc8d8;      /* from logo text */
+      --blue-dk:  #3aa8ba;
+      --blue-lt:  #d4f3f8;
+      --coral:    #f4846e;      /* from parrot / tagline */
+      --coral-lt: #fde8e4;
+      --navy:     #1e3044;      /* dark outline colour in logo */
+      --text:     #1e3044;
+      --muted:    #5b7080;
+      --dim:      #7a90a0;
+      --green:    #3cc98a;
+      --red:      #f47070;
+      --sans:     'Nunito', system-ui, sans-serif;
+      --serif:    'Fraunces', Georgia, serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 2px solid var(--border);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .topbar-brand {
+      font-family: 'Concert One', sans-serif;
+      font-size: 1.25rem;
+      color: #9fecf4;
+      letter-spacing: 0.04em;
+      text-shadow: 1px 1px 0 #1e3044;
+      background: var(--navy);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+      padding: 7px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      background: none;
+      font-family: var(--sans);
+      font-weight: 600;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-print:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 64px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(91,200,216,0.18) 0%, transparent 60%),
+                  radial-gradient(ellipse at 30% 80%, rgba(244,132,110,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1.5px solid rgba(91,200,216,0.5);
+      padding: 5px 16px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+
+    .hero-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--coral);
+      margin-bottom: 40px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 40px;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .hero-meta span strong {
+      display: block;
+      font-size: 0.92rem;
+      text-transform: none;
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 56px 0 0;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 24px;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 48px 0 0;
+    }
+
+    /* ── INTRO CARD ── */
+    .intro-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    /* ── ROLES ── */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 680px) {
+      .roles-grid { grid-template-columns: 1fr; }
+    }
+
+    .role-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 22px;
+    }
+
+    .role-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .role-card h3 {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .role-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .role-card ul { margin-top: 12px; }
+
+    .role-card ul li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .role-card ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-size: 0.72rem;
+    }
+
+    /* ── SCOPE ── */
+    .scope-block {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .scope-block-header {
+      background: var(--blue-lt);
+      border-bottom: 1.5px solid var(--border);
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scope-block-header h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .scope-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.86rem;
+    }
+    .scope-row:last-child { border-bottom: none; }
+
+    .scope-row-label {
+      flex: 1;
+      color: var(--text);
+    }
+
+    .scope-row-label small {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--dim);
+      margin-top: 1px;
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .check.yes { background: #d4f4e6; color: var(--green); }
+    .check.no  { background: #fde8e4; color: var(--red); }
+
+    /* ── NOT INCLUDED ── */
+    .not-included {
+      background: #fff8f7;
+      border: 1.5px solid #f4c4bb;
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+
+    .not-included h3 {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .not-included ul li {
+      font-size: 0.86rem;
+      color: var(--muted);
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .not-included ul li::before {
+      content: '✕';
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+      font-size: 0.68rem;
+    }
+
+    /* ── TIERS ── */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      .tiers-grid { grid-template-columns: 1fr; }
+    }
+
+    .tier-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .tier-card.recommended {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 1px var(--blue), 0 4px 24px rgba(91,200,216,0.18);
+    }
+
+    .tier-recommended-badge {
+      background: var(--blue);
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 6px;
+      font-weight: 800;
+    }
+
+    .tier-header {
+      padding: 24px 22px 18px;
+    }
+
+    .tier-name {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tier-price {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .tier-price-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .tier-divider { border: none; border-top: 1.5px solid var(--border); }
+
+    .tier-body {
+      padding: 16px 22px 22px;
+    }
+
+    .tier-body ul li {
+      font-size: 0.84rem;
+      color: var(--muted);
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .tier-body ul li:last-child { border-bottom: none; }
+
+    .tier-body ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .tier-body ul li.excluded {
+      opacity: 0.35;
+    }
+    .tier-body ul li.excluded::before {
+      content: '—';
+      color: var(--dim);
+    }
+
+    /* ── COSTS TABLE ── */
+    .costs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .costs-table th {
+      text-align: left;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border);
+      font-weight: 700;
+    }
+
+    .costs-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      vertical-align: top;
+    }
+
+    .costs-table tr:last-child td { border-bottom: none; }
+
+    .costs-table .col-cost {
+      text-align: right;
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--navy);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .costs-table .row-total td {
+      background: var(--blue-lt);
+      font-weight: 700;
+      color: var(--navy);
+      border-top: 2px solid var(--border);
+    }
+
+    .costs-table .row-total .col-cost {
+      color: var(--blue-dk);
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--blue-lt);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 28px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -20px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 3px solid var(--bg);
+    }
+
+    .timeline-week {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-dk);
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+
+    .timeline-title {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 0.92rem;
+      margin-bottom: 3px;
+    }
+
+    .timeline-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    /* ── TERMS ── */
+    .terms-list li {
+      font-size: 0.86rem;
+      color: var(--muted);
+      padding: 9px 0;
+      padding-left: 20px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .terms-list li:last-child { border-bottom: none; }
+    .terms-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 48px 24px 32px;
+      margin-top: 72px;
+    }
+
+    .footer-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 48px;
+    }
+
+    @media (max-width: 580px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    footer h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    footer p, footer li {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+
+    .footer-bottom {
+      max-width: 920px;
+      margin: 32px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-family: 'Concert One', sans-serif;
+      font-size: 1.15rem;
+      color: #9fecf4;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-contact {
+      font-size: 0.82rem;
+      color: var(--coral);
+      font-weight: 600;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .topbar { position: static; }
+      .btn-print { display: none; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Top bar ── -->
+  <div class="topbar">
+    <div class="topbar-brand">EUREKA WEBSITES</div>
+    <button class="btn-print" onclick="window.print()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"/>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+        <rect x="6" y="14" width="12" height="8"/>
+      </svg>
+      Print / PDF
+    </button>
+  </div>
+
+  <!-- ── Hero ── -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Software Proposal</div>
+      <h1>Social Emotional Challenge</h1>
+      <p class="hero-sub">School-Based Web Application</p>
+      <div class="hero-meta">
+        <span>Client<strong id="meta-client">—</strong></span>
+        <span>Proposal<strong id="meta-ref">—</strong></span>
+        <span>Valid Until<strong id="meta-valid">—</strong></span>
+        <span>Prepared By<strong>Eureka Websites</strong></span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       PROPOSAL DATA  —  update this object per client
+  ════════════════════════════════════════════════════════════ -->
+  <script>
+  const PROPOSAL = {
+    ref:         'EW-SEC-2026-001',
+    client:      'David Paris',
+    valid_until: 'July 1, 2026',
+
+    intro: `Thank you for the opportunity to put this together. Based on our conversation, you're looking for a school-based Social Emotional Challenge (SEC) web platform — a place where teachers and administrators can assign challenges to individual students, track their progress, and send reminders, all from a clean dashboard. This proposal covers what we'll build and what's included in each pricing tier.`,
+
+    roles: [
+      {
+        name: 'Student',
+        color: '#5bc8d8',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+        summary: 'Receives challenges, submits responses, and tracks personal progress.',
+        abilities: [
+          'Join a class with a simple class code — no password required',
+          'See active challenges assigned by their teacher',
+          'Submit responses: text, emoji rating, or multiple choice',
+          'View their own progress streak and completion history',
+          'Get notified when a new challenge is available',
+        ],
+      },
+      {
+        name: 'Teacher',
+        color: '#f4846e',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+        summary: 'Assigns challenges to their class and monitors participation.',
+        abilities: [
+          'Create and manage their classroom roster',
+          'Browse the challenge library and assign to their class',
+          'Set challenge frequency: daily or weekly',
+          'See which students have responded and who hasn\'t',
+          'Send manual reminders to students who are behind',
+          'Export class participation reports',
+        ],
+      },
+      {
+        name: 'School Admin',
+        color: '#3cc98a',
+        icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+        summary: 'Manages all teachers, classrooms, and the school\'s challenge library.',
+        abilities: [
+          'Create and manage teacher accounts',
+          'Build and maintain the school\'s challenge library',
+          'Assign challenges school-wide or to specific teachers',
+          'View participation data across all classrooms',
+          'Download school-wide progress reports',
+          'Manage school branding (logo, name)',
+        ],
+      },
+    ],
+
+    scope_groups: [
+      {
+        title: 'Authentication & Accounts',
+        icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+        items: [
+          { feature: 'Admin & Teacher email/password login',              t1: true,  t2: true,  t3: true  },
+          { feature: 'Student login via class code (no account needed)',  t1: true,  t2: true,  t3: true  },
+          { feature: 'Role-based access (Student, Teacher, Admin)',       t1: true,  t2: true,  t3: true  },
+          { feature: 'Student personal accounts (persistent login)',      t1: true,  t2: true,  t3: true,  note: 'Lets students see their full history across school years' },
+          { feature: 'Single Sign-On — Google or Microsoft login',        t1: false, t2: false, t3: true  },
+        ],
+      },
+      {
+        title: 'Challenge Engine',
+        icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+        items: [
+          { feature: 'Pre-built challenge library',                   t1: true,  t2: true,  t3: true  },
+          { feature: 'Admin can create custom challenges',                t1: true,  t2: true,  t3: true  },
+          { feature: 'Teacher can assign challenges to their class',      t1: true,  t2: true,  t3: true  },
+          { feature: 'Response types: text, emoji rating, multiple choice', t1: true, t2: true, t3: true  },
+          { feature: 'Recurring challenge scheduling (daily / weekly)',   t1: true,  t2: true,  t3: true  },
+          { feature: 'Teacher can create their own custom challenges',    t1: true,  t2: true,  t3: true  },
+          { feature: 'Challenge categories and tagging',                  t1: false, t2: true,  t3: true  },
+          { feature: 'School-wide challenge broadcast to all classes',    t1: false, t2: true,  t3: true  },
+        ],
+      },
+      {
+        title: 'Student Experience',
+        icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+        items: [
+          { feature: 'Student dashboard — active & past challenges',       t1: true,  t2: true,  t3: true  },
+          { feature: 'Progress tracker (streak, completion %)',            t1: true,  t2: true,  t3: true  },
+          { feature: 'In-app reminder when a new challenge is posted',     t1: true,  t2: true,  t3: true  },
+          { feature: 'Email or SMS reminders to students',                 t1: false, t2: true,  t3: true  },
+          { feature: 'Private reflection journal (student notes)',          t1: false, t2: true,  t3: true  },
+          { feature: 'Badges and milestone recognition',                   t1: false, t2: false, t3: true  },
+        ],
+      },
+      {
+        title: 'Teacher Dashboard',
+        icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+        items: [
+          { feature: 'Classroom roster management',                                 t1: true,  t2: true,  t3: true  },
+          { feature: 'Participation view — who responded, who hasn\'t',            t1: true,  t2: true,  t3: true  },
+          { feature: 'Manual reminder: ping students who are behind',              t1: true,  t2: true,  t3: true  },
+          { feature: 'View individual student responses',                           t1: true,  t2: true,  t3: true  },
+          { feature: 'Export class participation report (PDF or CSV)',             t1: false, t2: true,  t3: true  },
+          { feature: 'Response trend charts over time',                            t1: false, t2: false, t3: true  },
+        ],
+      },
+      {
+        title: 'Admin Dashboard',
+        icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+        items: [
+          { feature: 'Teacher account management (add, remove, reset)',   t1: true,  t2: true,  t3: true  },
+          { feature: 'School-wide participation overview',                 t1: true,  t2: true,  t3: true  },
+          { feature: 'Manage challenge library (add, edit, archive)',      t1: true,  t2: true,  t3: true  },
+          { feature: 'School branding (logo, name)',                       t1: true,  t2: true,  t3: true  },
+          { feature: 'Download school-wide progress reports',              t1: false, t2: true,  t3: true  },
+          { feature: 'Multi-school / district management panel',           t1: false, t2: false, t3: true  },
+        ],
+      },
+      {
+        title: 'Tech & Hosting',
+        icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+        items: [
+          { feature: 'Firebase hosting — no server to manage',             t1: true,  t2: true,  t3: true  },
+          { feature: 'Responsive design (phone, tablet, desktop)',         t1: true,  t2: true,  t3: true  },
+          { feature: 'Firestore real-time database',                       t1: true,  t2: true,  t3: true  },
+          { feature: 'Custom domain setup (you provide the domain)',        t1: true,  t2: true,  t3: true  },
+          { feature: 'Email notifications via SendGrid (free tier)',        t1: false, t2: true,  t3: true  },
+          { feature: 'PWA — installable on phone, works offline',          t1: false, t2: false, t3: true  },
+        ],
+      },
+    ],
+
+    not_included: [
+      'Native iOS or Android app (this is a web-only proposal)',
+      'Challenge content / curriculum — we build the engine, not the challenges themselves',
+      'Third-party integrations: Google Classroom, Canvas, PowerSchool, etc.',
+      'Multilingual / translation support',
+      'Video or audio response types',
+      'Live chat or video between teacher and student',
+      'Payment processing or subscription billing inside the app',
+      'Anything not explicitly listed above as included in your chosen tier',
+    ],
+
+    tiers: [
+      {
+        id: 'starter',
+        name: 'Starter',
+        price: '$2,500',
+        note: 'Fixed price · one-time payment',
+        recommended: false,
+        delivery: '4–5 weeks',
+        items: [
+          'All 3 user roles: Student, Teacher, Admin',
+          'Pre-built challenge library + assignment flow',
+          'Text, rating & multiple-choice responses',
+          'Recurring challenge scheduling (daily/weekly)',
+          'Student dashboard & progress tracker',
+          'In-app reminders for students',
+          'Teacher: class participation view',
+          'Teacher: manual reminder to students',
+          'Teacher: view individual responses',
+          'Teacher can create custom challenges',
+          'Student personal accounts (persistent history)',
+          'Admin: school branding, teacher management',
+          'Firebase hosting + Firestore database',
+          'Responsive design (mobile-friendly)',
+          'Custom domain setup',
+          '— Email/SMS reminders not included',
+          '— Export reports not included',
+          '— PWA not included',
+        ],
+        excluded_from: 15,
+      },
+      {
+        id: 'standard',
+        name: 'Standard',
+        price: '$3,200',
+        note: 'Fixed price · one-time payment',
+        recommended: true,
+        delivery: '6–7 weeks',
+        items: [
+          'Everything in Starter',
+          'Challenge categories and tagging',
+          'School-wide challenge broadcast',
+          'Email/SMS reminders to students (SendGrid)',
+          'Student private reflection journal',
+          'Export class & school reports (PDF & CSV)',
+          '— Response trend analytics not included',
+          '— Badges / milestone recognition not included',
+          '— Multi-school / district panel not included',
+          '— SSO (Google/Microsoft) not included',
+          '— PWA not included',
+        ],
+        excluded_from: 8,
+      },
+      {
+        id: 'premium',
+        name: 'Premium',
+        price: '$5,000',
+        note: 'Fixed price · one-time payment',
+        recommended: false,
+        delivery: '9–10 weeks',
+        items: [
+          'Everything in Standard',
+          'Response trend analytics — charts over time',
+          'Badges and milestone recognition for students',
+          'Multi-school / district admin panel',
+          'Single Sign-On (Google or Microsoft)',
+          'PWA — installable on phone, offline-capable',
+          '60-day priority support after launch',
+        ],
+        excluded_from: 99,
+      },
+    ],
+
+    monthly_costs: {
+      note: 'Built on Firebase (Google Cloud), which has a generous permanent free tier. Estimates below are for a typical single-school deployment with up to ~500 students and 30 teachers.',
+      items: [
+        { service: 'Firebase Hosting',    free_limit: 'Up to 10 GB/month',          cost: '$0 / mo',      note: 'Free tier easily covers a school' },
+        { service: 'Firestore Database',  free_limit: '50K reads · 20K writes/day', cost: '$0–5 / mo',    note: 'Stays free in normal use; minor cost only during high-traffic periods' },
+        { service: 'Firebase Auth',       free_limit: 'Unlimited email/password',    cost: '$0 / mo',      note: 'Always free for email auth' },
+        { service: 'SendGrid (email)',     free_limit: '100 emails/day',              cost: '$0 / mo',      note: 'Standard tier only. If volume grows: ~$15/mo' },
+        { service: 'Custom Domain',       free_limit: 'Provided by client',          cost: '~$12 / year',  note: 'Paid directly to your domain registrar, not to us' },
+      ],
+      total_note: 'Expected monthly cost: $0 to $5/month for a typical school. No platform fees or ongoing charges from Eureka Websites.',
+    },
+
+    timeline: [
+      { week: 'Week 1',    title: 'Kickoff & Foundation',    desc: 'Firebase setup, user roles & auth, database structure, base UI layout' },
+      { week: 'Weeks 2–3', title: 'Core Features',           desc: 'Challenge engine, assignment flow, student submission, teacher & admin dashboards' },
+      { week: 'Week 4',    title: 'Student Experience',      desc: 'Student dashboard, progress tracker, reminders, reflection journal' },
+      { week: 'Week 5',    title: 'Reports & Exports',       desc: 'Participation reports (PDF/CSV), school-wide data views' },
+      { week: 'Weeks 6–7', title: 'Testing & Launch',        desc: 'Cross-device testing, bug fixes, custom domain setup, final delivery' },
+    ],
+
+    terms: [
+      'All tiers are fixed-price. Scope is exactly what\'s listed in this document — nothing more, nothing less.',
+      'Any feature not listed in the selected tier is out of scope and requires a separate quote before work begins.',
+      'Client provides the custom domain. Any third-party accounts (SendGrid, etc.) are set up by Eureka Websites on your behalf.',
+      'A 50% deposit is required to start. The remaining 50% is due upon delivery.',
+      'One round of revisions is included per milestone. Additional rounds: $75/hour.',
+      'Eureka Websites may showcase the finished project in its portfolio unless otherwise agreed in writing.',
+      'This proposal is valid until July 1, 2026.',
+    ],
+  };
+  </script>
+
+
+  <!-- ── RENDER ── -->
+  <script>
+  (function () {
+
+    function esc(s) {
+      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function svgCheck(yes) {
+      if (yes) {
+        return `<div class="check yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>`;
+      }
+      return `<div class="check no"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>`;
+    }
+
+    document.getElementById('meta-client').textContent = PROPOSAL.client;
+    document.getElementById('meta-ref').textContent    = '#' + PROPOSAL.ref;
+    document.getElementById('meta-valid').textContent  = PROPOSAL.valid_until;
+
+    document.body.insertAdjacentHTML('beforeend', `
+      <main>
+        <div class="container">
+
+          <!-- INTRO -->
+          <section>
+            <p class="section-label">Introduction</p>
+            <h2>Project Overview</h2>
+            <div class="intro-card">${esc(PROPOSAL.intro)}</div>
+          </section>
+
+          <hr class="divider">
+
+          <!-- ROLES -->
+          <section>
+            <p class="section-label">System Architecture</p>
+            <h2>Three User Roles</h2>
+            <div class="roles-grid">
+              ${PROPOSAL.roles.map(r => `
+                <div class="role-card">
+                  <div class="role-icon" style="background:${r.color}18;border:1.5px solid ${r.color}40;color:${r.color};">
+                    ${r.icon}
+                  </div>
+                  <h3>${esc(r.name)}</h3>
+                  <p>${esc(r.summary)}</p>
+                  <ul>${r.abilities.map(a => `<li>${esc(a)}</li>`).join('')}</ul>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <hr class="divider">
+
+          <!-- SCOPE -->
+          <section>
+            <p class="section-label">What's Included</p>
+            <h2>Feature Scope</h2>
+            <p style="font-size:0.86rem;color:var(--muted);margin-bottom:24px;">
+              Every feature is listed here. Anything not on this list is out of scope — see the tier section for pricing.
+            </p>
+
+            <!-- Column headers -->
+            <div style="display:flex;justify-content:flex-end;margin-bottom:10px;">
+              <div style="display:flex;gap:8px;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:700;">
+                <span style="width:64px;text-align:center;">Starter</span>
+                <span style="width:64px;text-align:center;">Standard</span>
+                <span style="width:64px;text-align:center;">Premium</span>
+              </div>
+            </div>
+
+            ${PROPOSAL.scope_groups.map(g => `
+              <div class="scope-block">
+                <div class="scope-block-header">
+                  <span style="color:var(--blue-dk);">${g.icon}</span>
+                  <h3>${esc(g.title)}</h3>
+                </div>
+                <div class="scope-block-body">
+                  ${g.items.map(item => `
+                    <div class="scope-row">
+                      <div class="scope-row-label">
+                        ${esc(item.feature)}
+                        ${item.note ? `<small>${esc(item.note)}</small>` : ''}
+                      </div>
+                      <div style="display:flex;gap:22px;align-items:flex-start;">
+                        <div style="width:64px;display:flex;justify-content:center;">${svgCheck(item.t1)}</div>
+                        <div style="width:64px;display:flex;justify-content:center;">${svgCheck(item.t2)}</div>
+                        <div style="width:64px;display:flex;justify-content:center;">${svgCheck(item.t3)}</div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `).join('')}
+
+            <div class="not-included" style="margin-top:16px;">
+              <h3>Not Included in Any Tier</h3>
+              <ul>${PROPOSAL.not_included.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+            </div>
+          </section>
+
+          <hr class="divider">
+
+          <!-- TIERS -->
+          <section>
+            <p class="section-label">Investment</p>
+            <h2>Pricing Tiers</h2>
+            <p style="font-size:0.86rem;color:var(--muted);margin-bottom:28px;">
+              All prices are fixed. You pay exactly what's quoted — no hourly billing, no scope creep charges unless new features are requested.
+            </p>
+            <div class="tiers-grid">
+              ${PROPOSAL.tiers.map(t => `
+                <div class="tier-card${t.recommended ? ' recommended' : ''}">
+                  ${t.recommended ? '<div class="tier-recommended-badge">Recommended</div>' : ''}
+                  <div class="tier-header">
+                    <div class="tier-name">${esc(t.name)}</div>
+                    <div class="tier-price">${esc(t.price)}</div>
+                    <div class="tier-price-note">${esc(t.note)}</div>
+                    <div style="margin-top:10px;font-size:0.78rem;color:var(--dim);font-weight:600;">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:4px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      Delivery: ${esc(t.delivery)}
+                    </div>
+                  </div>
+                  <hr class="tier-divider">
+                  <div class="tier-body">
+                    <ul>
+                      ${t.items.map((item, idx) => `<li class="${idx >= t.excluded_from ? 'excluded' : ''}">${esc(item)}</li>`).join('')}
+                    </ul>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <hr class="divider">
+
+          <!-- MONTHLY COSTS -->
+          <section>
+            <p class="section-label">Running Costs</p>
+            <h2>Monthly Infrastructure Costs</h2>
+            <p style="font-size:0.86rem;color:var(--muted);margin-bottom:20px;">${esc(PROPOSAL.monthly_costs.note)}</p>
+            <div class="scope-block">
+              <table class="costs-table">
+                <thead>
+                  <tr>
+                    <th>Service</th>
+                    <th>Free Tier Limit</th>
+                    <th>Notes</th>
+                    <th class="col-cost">Est. Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${PROPOSAL.monthly_costs.items.map(i => `
+                    <tr>
+                      <td style="color:var(--navy);font-weight:700;">${esc(i.service)}</td>
+                      <td>${esc(i.free_limit)}</td>
+                      <td>${esc(i.note)}</td>
+                      <td class="col-cost">${esc(i.cost)}</td>
+                    </tr>
+                  `).join('')}
+                  <tr class="row-total">
+                    <td colspan="3">Typical Monthly Total</td>
+                    <td class="col-cost">$0–5 / mo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size:0.82rem;color:var(--dim);margin-top:12px;font-style:italic;">${esc(PROPOSAL.monthly_costs.total_note)}</p>
+          </section>
+
+          <hr class="divider">
+
+          <!-- TIMELINE -->
+          <section>
+            <p class="section-label">Delivery</p>
+            <h2>Project Timeline</h2>
+            <p style="font-size:0.86rem;color:var(--muted);margin-bottom:28px;">
+              Timeline shown for the Standard tier (6–7 weeks). Starter finishes in 4–5 weeks; Premium in 9–10 weeks.
+            </p>
+            <div class="timeline">
+              ${PROPOSAL.timeline.map(t => `
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-week">${esc(t.week)}</div>
+                  <div class="timeline-title">${esc(t.title)}</div>
+                  <div class="timeline-desc">${esc(t.desc)}</div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <hr class="divider">
+
+          <!-- TERMS -->
+          <section style="padding-bottom:0;">
+            <p class="section-label">Terms & Conditions</p>
+            <h2>Project Terms</h2>
+            <ul class="terms-list">
+              ${PROPOSAL.terms.map(t => `<li>${esc(t)}</li>`).join('')}
+            </ul>
+          </section>
+
+        </div>
+      </main>
+
+      <footer>
+        <div class="footer-inner">
+          <div>
+            <h4>About Eureka Websites</h4>
+            <p>We offer web &amp; software development, geospatial data science, and smart NFC solutions through TapPi Tags. We build clean, fast, custom web apps for schools, businesses, and startups — and we're proud of the work we put behind every project.</p>
+          </div>
+          <div>
+            <h4>Ready to Move Forward?</h4>
+            <p>Reply with the tier you'd like and we'll send a simple contract and invoice for the 50% deposit. Work begins the day the deposit clears.</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-brand">EUREKA WEBSITES</div>
+          <div class="footer-contact">aster@eurekawebsites.tech</div>
+        </div>
+      </footer>
+    `);
+
+  })();
+  </script>
+
+</body>
+</html>
