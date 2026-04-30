@@ -883,7 +883,7 @@
           'Everything in Starter',
           'Challenge categories and tagging',
           'School-wide challenge broadcast',
-          'Email/SMS reminders to students (SendGrid)',
+          'Email/SMS reminders to students',
           'Student private reflection journal',
           'Export class & school reports (PDF & CSV)',
           '— Response trend analytics not included',
@@ -915,13 +915,13 @@
     ],
 
     monthly_costs: {
-      note: 'Built on Firebase (Google Cloud), which has a generous permanent free tier. Estimates below are for a typical single-school deployment with up to ~500 students and 30 teachers.',
+      note: 'The platform runs on Google Cloud infrastructure with a generous permanent free tier. Estimates below are for a typical single-school deployment with up to ~500 students and 30 teachers.',
       items: [
-        { service: 'Firebase Hosting',    free_limit: 'Up to 10 GB/month',          cost: '$0 / mo',      note: 'Free tier easily covers a school' },
-        { service: 'Firestore Database',  free_limit: '50K reads · 20K writes/day', cost: '$0–5 / mo',    note: 'Stays free in normal use; minor cost only during high-traffic periods' },
-        { service: 'Firebase Auth',       free_limit: 'Unlimited email/password',    cost: '$0 / mo',      note: 'Always free for email auth' },
-        { service: 'SendGrid (email)',     free_limit: '100 emails/day',              cost: '$0 / mo',      note: 'Standard tier only. If volume grows: ~$15/mo' },
-        { service: 'Custom Domain',       free_limit: 'Provided by client',          cost: '~$12 / year',  note: 'Paid directly to your domain registrar, not to us' },
+        { service: 'Web Hosting',       free_limit: 'Up to 10 GB/month',           cost: '$0 / mo'     },
+        { service: 'Database',          free_limit: '50K reads · 20K writes/day',  cost: '$0–5 / mo'   },
+        { service: 'Authentication',    free_limit: 'Unlimited users',              cost: '$0 / mo'     },
+        { service: 'Email service',     free_limit: '100 emails/day',               cost: '$0 / mo'     },
+        { service: 'Custom Domain',     free_limit: 'Provided by client',           cost: '~$12 / year' },
       ],
       total_note: 'Expected monthly cost: $0 to $5/month for a typical school. No platform fees or ongoing charges from Eureka Websites.',
     },
@@ -1091,8 +1091,6 @@
                 <thead>
                   <tr>
                     <th>Service</th>
-                    <th class="col-hide">Free Tier Limit</th>
-                    <th>Notes</th>
                     <th class="col-cost">Est. Cost</th>
                   </tr>
                 </thead>
@@ -1100,13 +1098,11 @@
                   ${PROPOSAL.monthly_costs.items.map(i => `
                     <tr>
                       <td style="color:var(--navy);font-weight:700;">${esc(i.service)}</td>
-                      <td class="col-hide">${esc(i.free_limit)}</td>
-                      <td>${esc(i.note)}</td>
                       <td class="col-cost">${esc(i.cost)}</td>
                     </tr>
                   `).join('')}
                   <tr class="row-total">
-                    <td colspan="3">Typical Monthly Total</td>
+                    <td>Typical Monthly Total</td>
                     <td class="col-cost">$0–5 / mo</td>
                   </tr>
                 </tbody>
