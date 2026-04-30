@@ -897,11 +897,10 @@
     ],
 
     terms: [
-      'All tiers are fixed-price. Scope is exactly what\'s listed in this document — nothing more, nothing less.',
-      'Any feature not listed in the selected tier is out of scope and requires a separate quote before work begins.',
+      'All tiers are fixed-price — what you see is what you pay, no surprises.',
+      'Each tier includes exactly the features listed. Upgrading to the next tier is always an option if you want additional features.',
       'Client provides the custom domain. All third-party service accounts are set up by Eureka Websites on your behalf.',
       'A 50% deposit is required to start. The remaining 50% is due upon delivery.',
-      'One round of revisions is included per milestone. Additional rounds: $75/hour.',
       'Eureka Websites may showcase the finished project in its portfolio unless otherwise agreed in writing.',
       'This proposal is valid until July 1, 2026.',
     ],
@@ -966,7 +965,7 @@
             <p class="section-label">What's Included</p>
             <h2>Feature Scope</h2>
             <p style="font-size:0.86rem;color:var(--muted);margin-bottom:24px;">
-              Every feature is listed here. Anything not on this list is out of scope — see the tier section for pricing.
+              Every feature is listed here. See the tier section to find which ones are included in your chosen plan.
             </p>
 
             <!-- Column headers -->
@@ -1074,27 +1073,6 @@
               </table>
             </div>
             <p style="font-size:0.82rem;color:var(--dim);margin-top:12px;font-style:italic;">${esc(PROPOSAL.monthly_costs.total_note)}</p>
-          </section>
-
-          <hr class="divider">
-
-          <!-- TIMELINE -->
-          <section>
-            <p class="section-label">Delivery</p>
-            <h2>Project Timeline</h2>
-            <p style="font-size:0.86rem;color:var(--muted);margin-bottom:28px;">
-              Timeline shown for the Standard tier (6–7 weeks). Starter finishes in 4–5 weeks; Premium in 9–10 weeks.
-            </p>
-            <div class="timeline">
-              ${PROPOSAL.timeline.map(t => `
-                <div class="timeline-item">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-week">${esc(t.week)}</div>
-                  <div class="timeline-title">${esc(t.title)}</div>
-                  <div class="timeline-desc">${esc(t.desc)}</div>
-                </div>
-              `).join('')}
-            </div>
           </section>
 
           <hr class="divider">
