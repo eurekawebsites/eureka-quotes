@@ -297,7 +297,7 @@
     }
 
     .scope-check-col {
-      width: 56px;
+      width: 36px;
       display: flex;
       justify-content: center;
     }
@@ -319,13 +319,13 @@
     }
 
     .scope-col-headers-inner span {
-      width: 56px;
+      width: 36px;
       text-align: center;
     }
 
     @media (max-width: 480px) {
-      .scope-check-col { width: 36px; }
-      .scope-col-headers-inner span { width: 36px; font-size: 0.58rem; }
+      .scope-check-col { width: 30px; }
+      .scope-col-headers-inner span { width: 30px; font-size: 0.6rem; }
       .scope-checks { gap: 4px; }
       .scope-row { padding: 10px 12px; }
       .scope-block-header { padding: 12px; }
@@ -1010,10 +1010,13 @@
             <!-- Column headers -->
             <div class="scope-col-headers">
               <div class="scope-col-headers-inner">
-                <span>Starter</span>
-                <span>Standard</span>
-                <span>Premium</span>
+                <span>S1</span>
+                <span>S2</span>
+                <span>S3</span>
               </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-bottom:16px;gap:0;font-size:0.65rem;color:var(--muted);">
+              <span style="margin-right:4px;">S1=Starter &nbsp; S2=Standard &nbsp; S3=Premium</span>
             </div>
 
             ${PROPOSAL.scope_groups.map(g => `
