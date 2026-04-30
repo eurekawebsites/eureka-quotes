@@ -331,6 +331,11 @@
       .scope-block-header { padding: 12px; }
       .topbar { padding: 12px 16px; }
       .container { padding: 0 14px; }
+
+      /* costs table: hide free tier column, tighten */
+      .costs-table .col-hide { display: none; }
+      .costs-table th, .costs-table td { padding: 10px 8px; font-size: 0.82rem; }
+      .costs-table .col-cost { font-size: 0.9rem; }
     }
 
     .check {
@@ -1086,7 +1091,7 @@
                 <thead>
                   <tr>
                     <th>Service</th>
-                    <th>Free Tier Limit</th>
+                    <th class="col-hide">Free Tier Limit</th>
                     <th>Notes</th>
                     <th class="col-cost">Est. Cost</th>
                   </tr>
@@ -1095,7 +1100,7 @@
                   ${PROPOSAL.monthly_costs.items.map(i => `
                     <tr>
                       <td style="color:var(--navy);font-weight:700;">${esc(i.service)}</td>
-                      <td>${esc(i.free_limit)}</td>
+                      <td class="col-hide">${esc(i.free_limit)}</td>
                       <td>${esc(i.note)}</td>
                       <td class="col-cost">${esc(i.cost)}</td>
                     </tr>
